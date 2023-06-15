@@ -14,7 +14,17 @@ class MyApp extends StatelessWidget {
           title: const Text("May Apps"),
         ),
         body: const Center(
-          child: Text("Hello"),
+          child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              "Heaven",
+              style: TextStyle(
+                backgroundColor: Colors.blue,
+                color: Colors.white,
+                fontSize: 30,
+              ),
+            ),
+          ),
         ),
       ),
     );
