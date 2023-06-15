@@ -49,53 +49,64 @@ class MyApp extends StatelessWidget {
     // );
 
     // 03 List View
-    final List<Color> myColor = [
-      Colors.limeAccent,
-      Colors.lightBlue,
-      Colors.black,
-      Colors.greenAccent
-    ];
+    // final List<Color> myColor = [
+    //   Colors.limeAccent,
+    //   Colors.lightBlue,
+    //   Colors.black,
+    //   Colors.greenAccent
+    // ];
+    // final List<Widget> myList = List.generate(
+    //   100,
+    //   (index) => Text(
+    //     "${index + 1}",
+    //     style: TextStyle(
+    //       fontSize: 20 +
+    //           double.parse(
+    //             index.toString(),
+    //           ),
+    //     ),
+    //   ),
+    // );
+    // var list_view = ListView.separated(
+    //   separatorBuilder: (context, index) {
+    //     return Container(
+    //       height: 50,
+    //       color: Colors.cyan,
+    //     );
+    //   },
+    //   itemCount: 4,
+    //   itemBuilder: (context, index) {
+    //     return Container(
+    //       height: 300,
+    //       color: myColor[index],
+    //     );
+    //   },
+    // );
+    // var list_view_generate = ListView(
+    //   children: myList,
+    // );
 
-    final List<Widget> myList = List.generate(
-      100,
-      (index) => Text(
-        "${index + 1}",
-        style: TextStyle(
-          fontSize: 20 +
-              double.parse(
-                index.toString(),
-              ),
-        ),
-      ),
-    );
+    // 04 List Tile
 
-    var list_view = ListView.separated(
-      separatorBuilder: (context, index) {
-        return Container(
-          height: 50,
-          color: Colors.cyan,
-        );
-      },
-      itemCount: 4,
-      itemBuilder: (context, index) {
-        return Container(
-          height: 300,
-          color: myColor[index],
-        );
-      },
-    );
-
-    var list_view_generate = ListView(
-      children: myList,
+    var list_tile = ListView(
+      children: [
+        ListTile(
+          contentPadding: EdgeInsets.all(10),
+          leading: CircleAvatar(),
+          title: Text("Hello Fucking World"),
+          subtitle: Text("The world is Fucking Fake"),
+          trailing: Text("Now"),
+        )
+      ],
     );
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("May Apps"),
+          title: const Text("My Apps"),
         ),
-        body: list_view_generate,
+        body: list_tile,
       ),
     );
   }
