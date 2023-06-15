@@ -87,17 +87,29 @@ class MyApp extends StatelessWidget {
     // );
 
     // 04 List Tile
+    // var list_tile = ListView(
+    //   children: [
+    //     ListTile(
+    //       contentPadding: EdgeInsets.all(10),
+    //       leading: CircleAvatar(),
+    //       title: Text("Hello Fucking World"),
+    //       subtitle: Text("The world is Fucking Fake"),
+    //       trailing: Text("Now"),
+    //     )
+    //   ],
+    // );
 
-    var list_tile = ListView(
-      children: [
-        ListTile(
-          contentPadding: EdgeInsets.all(10),
-          leading: CircleAvatar(),
-          title: Text("Hello Fucking World"),
-          subtitle: Text("The world is Fucking Fake"),
-          trailing: Text("Now"),
-        )
-      ],
+    // 05 Image
+    var image = Center(
+      child: Container(
+        width: 350,
+        height: 500,
+        color: Colors.amber,
+        child: Image(
+            fit: BoxFit.cover,
+            image: NetworkImage(
+                "https://images.unsplash.com/photo-1661956602153-23384936a1d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")),
+      ),
     );
 
     return MaterialApp(
@@ -106,7 +118,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text("My Apps"),
         ),
-        body: list_tile,
+        body: image,
       ),
     );
   }
