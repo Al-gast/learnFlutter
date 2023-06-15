@@ -100,16 +100,30 @@ class MyApp extends StatelessWidget {
     // );
 
     // 05 Image
-    var image = Center(
-      child: Container(
-        width: 350,
-        height: 500,
-        color: Colors.amber,
-        child: Image(
-            fit: BoxFit.cover,
-            image: NetworkImage(
-                "https://images.unsplash.com/photo-1661956602153-23384936a1d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")),
-      ),
+    // var image = Center(
+    //   child: Container(
+    //     width: 350,
+    //     height: 500,
+    //     color: Colors.amber,
+    //     child: Image(
+    //         fit: BoxFit.cover,
+    //         image: NetworkImage(
+    //             "https://images.unsplash.com/photo-1661956602153-23384936a1d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80")),
+    //   ),
+    // );
+
+    // 06 Extract Widget
+
+    var extract_widget = ListView.builder(
+      itemCount: 100,
+      itemBuilder: (context, index) {
+        return ChatItem(
+          imageUrl:
+              "https://images.unsplash.com/photo-1524504542391-127872011665?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+          name: "Ata",
+          subtitle: "helohelohelo",
+        );
+      },
     );
 
     return MaterialApp(
@@ -118,8 +132,28 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: const Text("My Apps"),
         ),
-        body: image,
+        body: extract_widget,
       ),
+    );
+  }
+}
+
+class ChatItem extends StatelessWidget {
+  final String imageUrl;
+  final String name;
+  final String subtitle;
+
+  const ChatItem({this.imageUrl = "", this.name = "", this.subtitle = ""});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: CircleAvatar(
+        backgroundImage: NetworkImage(imageUrl),
+      ),
+      title: Text(name),
+      subtitle: Text(subtitle),
+      trailing: Text("Now"),
     );
   }
 }
