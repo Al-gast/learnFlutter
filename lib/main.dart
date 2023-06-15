@@ -4,13 +4,34 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  int counter = 1;
+class MyApp extends StatelessWidget {
+  // int counter = 1;
+  final List<Map<String, dynamic>> myList = [
+    {
+      "Name": "Sandika",
+      "Age": 23,
+      "favColor": [
+        "Black",
+        "White",
+        "Amber",
+        "Amber",
+        "Amber",
+        "Amber",
+        "Amber",
+        "Amber",
+        "Amber",
+        "Amber",
+        "Amber",
+        "Amber",
+        "Amber"
+      ]
+    },
+    {
+      "Name": "Randika",
+      "Age": 21,
+      "favColor": ["Blue", "Grey", "Lime"]
+    },
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -133,46 +154,92 @@ class _MyAppState extends State<MyApp> {
     // );
 
     // 07 statefull
-    var statefull = Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        Text(
-          counter.toString(),
-          style: TextStyle(fontSize: 20 + double.parse(counter.toString())),
+    // var statefull = Column(
+    //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //   children: [
+    //     Text(
+    //       counter.toString(),
+    //       style: TextStyle(fontSize: 20 + double.parse(counter.toString())),
+    //     ),
+    //     Row(
+    //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    //       children: [
+    //         ElevatedButton(
+    //           child: Icon(Icons.remove),
+    //           onPressed: () {
+    //             setState(() {
+    //               if (counter <= 1) {
+    //                 return;
+    //               }
+    //               counter--;
+    //             });
+    //           },
+    //         ),
+    //         ElevatedButton(
+    //           onPressed: () {
+    //             setState(() {
+    //               counter++;
+    //             });
+    //           },
+    //           child: Icon(Icons.add),
+    //         )
+    //       ],
+    //     )
+    //   ],
+    // );
+
+    // 08 Mapping List
+    var mapping_list = ListView(
+        children: myList.map((data) {
+      List myFavColor = data['favColor'];
+      return Card(
+        margin: EdgeInsets.all(20),
+        child: Padding(
+          padding:
+              const EdgeInsets.only(top: 15, bottom: 8, right: 15, left: 15),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Name: ${data['Name']}'),
+                      Text('Age: ${data['Age']}')
+                    ],
+                  )
+                ],
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                    children: myFavColor.map((color) {
+                  return Container(
+                    padding: const EdgeInsets.all(10),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+                    color: Colors.blue,
+                    child: Text(color),
+                  );
+                }).toList()),
+              )
+            ],
+          ),
         ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            ElevatedButton(
-              child: Icon(Icons.remove),
-              onPressed: () {
-                setState(() {
-                  if (counter <= 1) {
-                    return;
-                  }
-                  counter--;
-                });
-              },
-            ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {
-                  counter++;
-                });
-              },
-              child: Icon(Icons.add),
-            )
-          ],
-        )
-      ],
-    );
+      );
+    }).toList());
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Text("My Apps"),
         ),
-        body: statefull,
+        body: mapping_list,
       ),
     );
   }
