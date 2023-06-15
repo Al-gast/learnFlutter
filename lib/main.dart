@@ -4,7 +4,14 @@ void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  int counter = 1;
+
   @override
   Widget build(BuildContext context) {
     // 01 basic widget
@@ -113,26 +120,59 @@ class MyApp extends StatelessWidget {
     // );
 
     // 06 Extract Widget
+    // var extract_widget = ListView.builder(
+    //   itemCount: 100,
+    //   itemBuilder: (context, index) {
+    //     return ChatItem(
+    //       imageUrl:
+    //           "https://images.unsplash.com/photo-1524504542391-127872011665?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
+    //       name: "Ata",
+    //       subtitle: "helohelohelo",
+    //     );
+    //   },
+    // );
 
-    var extract_widget = ListView.builder(
-      itemCount: 100,
-      itemBuilder: (context, index) {
-        return ChatItem(
-          imageUrl:
-              "https://images.unsplash.com/photo-1524504542391-127872011665?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80",
-          name: "Ata",
-          subtitle: "helohelohelo",
-        );
-      },
+    // 07 statefull
+    var statefull = Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        Text(
+          counter.toString(),
+          style: TextStyle(fontSize: 20 + double.parse(counter.toString())),
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            ElevatedButton(
+              child: Icon(Icons.remove),
+              onPressed: () {
+                setState(() {
+                  if (counter <= 1) {
+                    return;
+                  }
+                  counter--;
+                });
+              },
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  counter++;
+                });
+              },
+              child: Icon(Icons.add),
+            )
+          ],
+        )
+      ],
     );
-
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: const Text("My Apps"),
         ),
-        body: extract_widget,
+        body: statefull,
       ),
     );
   }
