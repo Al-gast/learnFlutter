@@ -1,37 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 void main() {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   // int counter = 1;
-  final List<Map<String, dynamic>> myList = [
-    {
-      "Name": "Sandika",
-      "Age": 23,
-      "favColor": [
-        "Black",
-        "White",
-        "Amber",
-        "Amber",
-        "Amber",
-        "Amber",
-        "Amber",
-        "Amber",
-        "Amber",
-        "Amber",
-        "Amber",
-        "Amber",
-        "Amber"
-      ]
-    },
-    {
-      "Name": "Randika",
-      "Age": 21,
-      "favColor": ["Blue", "Grey", "Lime"]
-    },
-  ];
+  final DateTime currentDate = DateTime.now();
+  final TextEditingController _textEditingController = TextEditingController();
+  String result = "";
 
   @override
   Widget build(BuildContext context) {
@@ -189,58 +172,148 @@ class MyApp extends StatelessWidget {
     // );
 
     // 08 Mapping List
-    var mapping_list = ListView(
-        children: myList.map((data) {
-      List myFavColor = data['favColor'];
-      return Card(
-        margin: EdgeInsets.all(20),
-        child: Padding(
-          padding:
-              const EdgeInsets.only(top: 15, bottom: 8, right: 15, left: 15),
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  CircleAvatar(),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('Name: ${data['Name']}'),
-                      Text('Age: ${data['Age']}')
-                    ],
-                  )
-                ],
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                    children: myFavColor.map((color) {
-                  return Container(
-                    padding: const EdgeInsets.all(10),
-                    margin:
-                        const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
-                    color: Colors.blue,
-                    child: Text(color),
-                  );
-                }).toList()),
-              )
-            ],
-          ),
-        ),
-      );
-    }).toList());
+    // var mapping_list = ListView(
+    //     children: myList.map((data) {
+    //   List myFavColor = data['favColor'];
+    //   return Card(
+    //     margin: EdgeInsets.all(20),
+    //     child: Padding(
+    //       padding:
+    //           const EdgeInsets.only(top: 15, bottom: 8, right: 15, left: 15),
+    //       child: Column(
+    //         children: [
+    //           Row(
+    //             children: [
+    //               CircleAvatar(),
+    //               SizedBox(
+    //                 width: 20,
+    //               ),
+    //               Column(
+    //                 crossAxisAlignment: CrossAxisAlignment.start,
+    //                 children: [
+    //                   Text('Name: ${data['Name']}'),
+    //                   Text('Age: ${data['Age']}')
+    //                 ],
+    //               )
+    //             ],
+    //           ),
+    //           SingleChildScrollView(
+    //             scrollDirection: Axis.horizontal,
+    //             child: Row(
+    //                 children: myFavColor.map((color) {
+    //               return Container(
+    //                 padding: const EdgeInsets.all(10),
+    //                 margin:
+    //                     const EdgeInsets.symmetric(horizontal: 8, vertical: 15),
+    //                 color: Colors.blue,
+    //                 child: Text(color),
+    //               );
+    //             }).toList()),
+    //           )
+    //         ],
+    //       ),
+    //     ),
+    //   );
+    // }).toList());
+
+    // 09 Date Time
+    // var date_time = Center(
+    //   child: Text(
+    //     DateFormat('EEEE').format(currentDate),
+    //     style: TextStyle(fontSize: 25),
+    //   ),
+    // );
+
+    // 10 Tab Bar
+    List<Tab> myTab = [
+      const Tab(
+        icon: Icon(Icons.accessible_rounded),
+        text: "Tab 1",
+      ),
+      const Tab(
+        icon: Icon(Icons.ac_unit),
+        text: "Tab 2",
+      ),
+      const Tab(
+        icon: Icon(Icons.access_time_sharp),
+        text: "Tab 2",
+      ),
+    ];
+    // const tab_bar_view = TabBarView(children: [
+    //   Center(
+    //     child: Text("Hello"),
+    //   ),
+    //   Center(
+    //     child: Text("Fuck"),
+    //   ),
+    //   Center(
+    //     child: Text("You"),
+    //   ),
+    // ]);
+
+    // Text filed
+    // var text_filed = Center(
+    //   child: Column(
+    //     children: [
+    //       TextField(
+    //         controller: _textEditingController,
+    //         decoration: InputDecoration(
+    //           labelText: 'Enter your name',
+    //           labelStyle: TextStyle(
+    //             color: Colors.blue,
+    //             fontWeight: FontWeight.bold,
+    //           ),
+    //           hintText: 'e.g. John Doe',
+    //           hintStyle: TextStyle(
+    //             color: Colors.grey,
+    //           ),
+    //           prefixIcon: Icon(
+    //             Icons.person,
+    //             color: Colors.blue,
+    //           ),
+    //           enabledBorder: OutlineInputBorder(
+    //             borderSide: BorderSide(
+    //               color: Colors.blue,
+    //             ),
+    //             borderRadius: BorderRadius.circular(10.0),
+    //           ),
+    //           focusedBorder: OutlineInputBorder(
+    //             borderSide: BorderSide(
+    //               color: Colors.blue,
+    //               width: 2.0,
+    //             ),
+    //             borderRadius: BorderRadius.circular(10.0),
+    //           ),
+    //         ),
+    //         keyboardType: TextInputType.text,
+    //         textInputAction: TextInputAction.done,
+    //         onChanged: (value) {
+    //           setState(() {
+    //             result = value;
+    //           });
+    //         },
+    //         onSubmitted: (value) {
+    //           // Handle text submission
+    //         },
+    //       ),
+    //       Text(result)
+    //     ],
+    //   ),
+    // );
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Text("My Apps"),
-        ),
-        body: mapping_list,
-      ),
+      home: DefaultTabController(
+          length: myTab.length,
+          child: Scaffold(
+            appBar: AppBar(
+              title: const Text("My Apps"),
+              bottom: TabBar(
+                tabs: myTab,
+              ),
+            ),
+            body: Text('data'),
+          )),
     );
   }
 }
