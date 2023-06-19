@@ -1,3 +1,7 @@
+import 'dart:math';
+
+import 'package:basic_widget/screens/detail_page.dart';
+import 'package:basic_widget/screens/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -225,6 +229,20 @@ class _MyAppState extends State<MyApp> {
     // );
 
     // 10 Tab Bar
+    final List<Container> myList = List.generate(90, (index) {
+      return Container(
+        height: 50,
+        width: 150,
+        color: Color.fromARGB(
+            255,
+            Random().nextInt(255),
+            Random().nextInt(
+              255,
+            ),
+            Random().nextInt(255)),
+      );
+    });
+
     List<Tab> myTab = [
       const Tab(
         icon: Icon(Icons.accessible_rounded),
@@ -251,7 +269,7 @@ class _MyAppState extends State<MyApp> {
     //   ),
     // ]);
 
-    // Text filed
+    // 11 Text filed
     // var text_filed = Center(
     //   child: Column(
     //     children: [
@@ -301,19 +319,67 @@ class _MyAppState extends State<MyApp> {
     //   ),
     // );
 
+    // 12 Grid
+
+    var grid = GridView(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        crossAxisSpacing: 20,
+        mainAxisSpacing: 10,
+      ),
+      children: myList,
+    );
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: DefaultTabController(
-          length: myTab.length,
-          child: Scaffold(
-            appBar: AppBar(
-              title: const Text("My Apps"),
-              bottom: TabBar(
-                tabs: myTab,
-              ),
-            ),
-            body: Text('data'),
-          )),
+      title: "My App",
+      initialRoute: "/",
+      routes: {
+        "/": (context) => HomePage(),
+        "/detail": (context) => DetailPage()
+      },
+      // home: DefaultTabController(
+      //     length: myTab.length,
+      //     child: Builder(builder: (context) {
+      //       return Scaffold(
+      //         appBar: AppBar(
+      //           title: const Text("My Apps"),
+      //           bottom: TabBar(
+      //             tabs: myTab,
+      //           ),
+      //         ),
+      //         body: Text(result),
+      //         floatingActionButton: FloatingActionButton(
+      //           onPressed: () {
+      //             showDialog(
+      //               context: context,
+      //               builder: (BuildContext context) {
+      //                 return AlertDialog(
+      //                   title: Text("CONFIRM"),
+      //                   content: Text("Are you sure you want to delete?"),
+      //                   actions: [
+      //                     ElevatedButton(
+      //                         onPressed: () {
+      //                           setState(() {});
+      //                           Navigator.of(context).pop();
+      //                         },
+      //                         child: Text("No")),
+      //                     ElevatedButton(
+      //                         onPressed: () {
+      //                           Navigator.of(context).pop();
+      //                         },
+      //                         child: Text("Yes")),
+      //                   ],
+      //                 );
+      //               },
+      //             );
+      //           },
+      //           child: Icon(Icons.delete),
+      //         ),
+      //         floatingActionButtonLocation:
+      //             FloatingActionButtonLocation.centerFloat,
+      //   );
+      // })),
     );
   }
 }
